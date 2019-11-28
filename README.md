@@ -23,9 +23,9 @@ Or individually, for each chromosome using [UCSC API](http://genome.ucsc.edu/gol
 * ``https://api.genome.ucsc.edu/getData/sequence?genome=hg19;chrom=chrM``
 6. Restart the executable and select option 2 this time to generate the training dataset.
 ### Files Generated
-#####Generated files using option 1
+####Generated files using option 1
 - positions.txt - Parsed insert positions from Retrovirus Integration Database. The file is a comma-separated list of insert positions and chromosome designation.
-#####Generated files using option 2
+####Generated files using option 2
 The generation of following files requires a *positions.txt* generated using option 1.
 
 *Training set files*
