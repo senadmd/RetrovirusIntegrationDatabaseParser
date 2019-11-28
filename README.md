@@ -27,6 +27,7 @@ Or individually, for each chromosome using [UCSC API](http://genome.ucsc.edu/gol
 - positions.txt - Parsed insert positions from Retrovirus Integration Database. The file is a comma-separated list of insert positions and chromosome designation. 
 
 **Generated files using option 2**
+
 The generation of following files requires a *positions.txt* generated using option 1.
 
 *Training set files*
