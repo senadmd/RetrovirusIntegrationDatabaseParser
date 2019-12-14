@@ -31,8 +31,8 @@ Or individually, for each chromosome using [UCSC API](http://genome.ucsc.edu/gol
 The generation of following files requires a *positions.txt* generated using option 1.
 
 *Training set files*
-- DNAString.txt - DNA String containing 100bp of nucleotides before the insert position and 100 bp after insert position concatenated.
-- inserts.txt - Comma-separated string of DNA positions one-hot encoded for each possible nucleotide. The 200 bp of DNA has been converted to one-hot comma-separated string containg the possible nuclotides (A,C,G,T) in order. For each row, the first 200 one-hot encoded values are for A, then the next 200 values are for C, then for G, and at last for T.
+- DNAString.txt - DNA String containing 100 bp of nucleotides before the insert position and 100 bp after insert position concatenated.
+- inserts.txt - Comma-separated string of DNA positions one-hot encoded for each possible nucleotide. The 200 bp of DNA has been converted to one-hot comma-separated string containg the possible nuclotides (A,C,G,T) in order. For each row, the first 200 one-hot encoded values are for A (first channel), then the next 200 values are for C (second channel), then for G (third channel), and at last for T (fourth channel). The one-hot translation is decribed below in the section *One-Hot encoding table for DNA strings*.
 - labels.txt - Label indicating a true (1) or false (0) integration event. For every true integration event, a false, randomly sampled false integration event is generated.
 
 *Validation set files - same format as above but generated separately for the validation data*
@@ -44,6 +44,30 @@ The generation of following files requires a *positions.txt* generated using opt
 
 To compile this project you need Visual Studio.
 
+### One-Hot encoding table for DNA strings
+DNA strings fetched using [UCSC API](http://genome.ucsc.edu/goldenPath/help/api.html) contain non-nucleotide symbols. These non-ACGT symbols designate polymorhic poisitions in the DNA. The meaning of these are described by the [*IUPAC-IUB Symbols for Nucleotide Nomenclature*](https://www.qmul.ac.uk/sbcs/iubmb/misc/naseq.html), but also in the [UCSC FAQ](https://genome-euro.ucsc.edu/FAQ/FAQdownloads.html#download5).
+While we follow the *IUPAC-IUB Symbols for Nucleotide Nomenclature* to a large degree when translating the DNA into one-hot encoded string, we handle the occurrence of 'X' and 'N' differently. As many sequences contain the symbol 'N' in repeat, the DNA string containing these repeats would be translated into a string of repeating ones. This raises the opportunity for the neural network to detect this simple pattern arising from simply generating a large number of random DNA samples from the human genome. To avoid this, when generating the training set, the generator will generate a random ACGT entry at the position of the 'N' symbol or 'X' symbol.
+
+To be specific, the following translation table is used when translating the DNA into one-hot encoded string.
+| Symbol | Meaning | Translation |
+| --- | --- | --- |
+| A | A | Translated to 1 at position of A, all other nucleotide channels are set to 0 at the corresponding position |
+| C | C | Translated to 1 at position of C, all other nucleotide channels are set to 0 at the corresponding position |
+| G | G | Translated to G at position of A, all other nucleotide channels are set to 0 at the corresponding position |
+| T | T | Translated to T at position of A, all other nucleotide channels are set to 0 at the corresponding position |
+| M | A or C | Translated to 1 at position of M for the channels A and C, all other channels are set to zero at the corresponding position |
+| R | A or G | Translated to 1 at position of R for the channels A and G, all other channels are set to zero at the corresponding position |
+| W | A or T | Translated to 1 at position of W for the channels A and T, all other channels are set to zero at the corresponding position |
+| S | C or G | Translated to 1 at position of S for the channels C and G, all other channels are set to zero at the corresponding position |
+| Y | C or T | Translated to 1 at position of Y for the channels C and T, all other channels are set to zero at the corresponding position |
+| K | G or T | Translated to 1 at position of K for the channels G and T, all other channels are set to zero at the corresponding position |
+| V | A or C or G | Translated to 1 at position of V for the channels A, C, G, all other channels are set to zero at the corresponding position |
+| H | A or C or T | Translated to 1 at position of H for the channels A, C, T, all other channels are set to zero at the corresponding position|
+| D | A or G or T | Translated to 1 at position of D for the channels A, G, T, all other channels are set to zero at the corresponding position|
+| B | C or G or T | Translated to 1 at position of B for the channels C, G, T, all other channels are set to zero at the corresponding position|
+| X | G or A or T or C | One channel is randomly set to 1 at the position of X, all other channels are set to zero at the corresponding position|
+| N | G or A or T or C | One channel is randomly set to 1 at the position of N, all other channels are set to zero at the corresponding position|
+ 
 ## Authors
 
 * **Senad Matuh Delic** 
