@@ -32,10 +32,11 @@ The generation of following files requires a *positions.txt* generated using opt
 
 *Training set files*
 - DNAString.txt - DNA String containing 100 bp of nucleotides before the insert position and 100 bp after insert position concatenated.
-- inserts.txt - Comma-separated string of DNA positions one-hot encoded for each possible nucleotide. The 200 bp of DNA has been converted to one-hot comma-separated string containg the possible nuclotides (A,C,G,T) in order. For each row, the first 200 one-hot encoded values are for A (first channel), then the next 200 values are for C (second channel), then for G (third channel), and at last for T (fourth channel). The one-hot translation is decribed below in the section *One-Hot encoding table for DNA strings*.
+- inserts.txt - Comma-separated string of DNA positions one-hot encoded for each possible nucleotide. The 200 bp of DNA has been converted to one-hot comma-separated string containg the possible nuclotides (A,C,G,T) in order. For each row, the first 200 one-hot encoded values are for A (first channel), then the next 200 values are for C (second channel), then for G (third channel), and at last for T (fourth channel). The one-hot translation is decribed below in the section "One-hot encoding table for DNA strings".
 - labels.txt - Label indicating a true (1) or false (0) integration event. For every true integration event, a false, randomly sampled false integration event is generated.
 
-*Validation set files - same format as above but generated separately for the validation data*
+*Validation set files* 
+These files follow the same format as above but are generated separately for the validation data.
 - DNAString_validation.txt
 - inserts_validation.txt
 - labels_validation.txt    
@@ -44,9 +45,9 @@ The generation of following files requires a *positions.txt* generated using opt
 
 To compile this project you need Visual Studio.
 
-### One-Hot encoding table for DNA strings
-DNA strings fetched using [UCSC API](http://genome.ucsc.edu/goldenPath/help/api.html) contain non-nucleotide symbols. These non-ACGT symbols designate polymorhic poisitions in the DNA. The meaning of these are described by the [*IUPAC-IUB Symbols for Nucleotide Nomenclature*](https://www.qmul.ac.uk/sbcs/iubmb/misc/naseq.html), but also in the [UCSC FAQ](https://genome-euro.ucsc.edu/FAQ/FAQdownloads.html#download5).
-While we follow the *IUPAC-IUB Symbols for Nucleotide Nomenclature* to a large degree when translating the DNA into one-hot encoded string, we handle the occurrence of 'X' and 'N' differently. As many sequences contain the symbol 'N' in repeat, the DNA string containing these repeats would be translated into a string of repeating ones. This raises the opportunity for the neural network to detect this simple pattern arising from simply generating a large number of random DNA samples from the human genome. To avoid this, when generating the training set, the generator will generate a random ACGT entry at the position of the 'N' symbol or 'X' symbol.
+### One-hot encoding table for DNA strings
+DNA strings fetched using [UCSC API](http://genome.ucsc.edu/goldenPath/help/api.html) contain non-nucleotide symbols. These non-ACGT symbols designate polymorhic poisitions in the DNA. The meaning of these are described by the [IUPAC-IUB Symbols for Nucleotide Nomenclature](https://www.qmul.ac.uk/sbcs/iubmb/misc/naseq.html), but also in the [UCSC FAQ](https://genome-euro.ucsc.edu/FAQ/FAQdownloads.html#download5).
+While we follow the IUPAC-IUB Symbols for Nucleotide Nomenclature to a large degree when translating the DNA into one-hot encoded string, we handle the occurrence of 'X' and 'N' differently. As many sequences contain the symbol 'N' in repeat, the DNA string containing these repeats would be translated into a string of repeating ones. This raises the opportunity for the neural network to detect this simple pattern arising from simply generating a large number of random DNA samples from the human genome. To avoid this, when generating the training set, the generator will generate a random ACGT entry at the position of the 'N' symbol or 'X' symbol.
 
 To be specific, the following translation table is used when translating the DNA into one-hot encoded string.
 
