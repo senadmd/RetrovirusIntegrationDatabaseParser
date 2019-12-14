@@ -49,6 +49,11 @@ DNA strings fetched using [UCSC API](http://genome.ucsc.edu/goldenPath/help/api.
 While we follow the *IUPAC-IUB Symbols for Nucleotide Nomenclature* to a large degree when translating the DNA into one-hot encoded string, we handle the occurrence of 'X' and 'N' differently. As many sequences contain the symbol 'N' in repeat, the DNA string containing these repeats would be translated into a string of repeating ones. This raises the opportunity for the neural network to detect this simple pattern arising from simply generating a large number of random DNA samples from the human genome. To avoid this, when generating the training set, the generator will generate a random ACGT entry at the position of the 'N' symbol or 'X' symbol.
 
 To be specific, the following translation table is used when translating the DNA into one-hot encoded string.
+
+| Symbol | Meaning | Translation |
+| --- | --- | --- |
+| A | A | A Test |
+
 | Symbol | Meaning | Translation |
 | --- | --- | --- |
 | A | A | Translated to 1 at position of A, all other nucleotide channels are set to 0 at the corresponding position |
