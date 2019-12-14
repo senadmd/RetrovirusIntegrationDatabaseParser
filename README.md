@@ -62,11 +62,11 @@ To be specific, the following translation table is used when translating the DNA
 | Y | C or T | Translated to 1 at position of Y for the channels C and T, all other channels are set to zero at the corresponding position |
 | K | G or T | Translated to 1 at position of K for the channels G and T, all other channels are set to zero at the corresponding position |
 | V | A or C or G | Translated to 1 at position of V for the channels A, C, G, all other channels are set to zero at the corresponding position |
-| H | A or C or T | Translated to 1 at position of H for the channels A, C, T, all other channels are set to zero at the corresponding position|
-| D | A or G or T | Translated to 1 at position of D for the channels A, G, T, all other channels are set to zero at the corresponding position|
-| B | C or G or T | Translated to 1 at position of B for the channels C, G, T, all other channels are set to zero at the corresponding position|
-| X | G or A or T or C | One channel is randomly set to 1 at the position of X, all other channels are set to zero at the corresponding position|
-| N | G or A or T or C | One channel is randomly set to 1 at the position of N, all other channels are set to zero at the corresponding position|
+| H | A or C or T | Translated to 1 at position of H for the channels A, C, T, all other channels are set to zero at the corresponding position |
+| D | A or G or T | Translated to 1 at position of D for the channels A, G, T, all other channels are set to zero at the corresponding position |
+| B | C or G or T | Translated to 1 at position of B for the channels C, G, T, all other channels are set to zero at the corresponding position |
+| X | G or A or T or C | One channel is randomly set to 1 at the position of X, all other channels are set to zero at the corresponding position |
+| N | G or A or T or C | One channel is randomly set to 1 at the position of N, all other channels are set to zero at the corresponding position |
  
 ## Authors
 
