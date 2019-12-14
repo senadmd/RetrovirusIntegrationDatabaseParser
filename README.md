@@ -50,9 +50,6 @@ While we follow the *IUPAC-IUB Symbols for Nucleotide Nomenclature* to a large d
 
 To be specific, the following translation table is used when translating the DNA into one-hot encoded string.
 
-| Symbol | Meaning | Translation |
-| --- | --- | --- |
-| A | A | A Test |
 
 | Symbol | Meaning | Translation |
 | --- | --- | --- |
