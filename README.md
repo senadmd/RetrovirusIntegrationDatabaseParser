@@ -55,8 +55,8 @@ To be specific, the following translation table is used when translating the DNA
 | --- | --- | --- |
 | A | A | Translated to 1 at position of A, all other nucleotide channels are set to 0 at the corresponding position |
 | C | C | Translated to 1 at position of C, all other nucleotide channels are set to 0 at the corresponding position |
-| G | G | Translated to G at position of A, all other nucleotide channels are set to 0 at the corresponding position |
-| T | T | Translated to T at position of A, all other nucleotide channels are set to 0 at the corresponding position |
+| G | G | Translated to 1 at position of G, all other nucleotide channels are set to 0 at the corresponding position |
+| T | T | Translated to 1 at position of T, all other nucleotide channels are set to 0 at the corresponding position |
 | M | A or C | Translated to 1 at position of M for the channels A and C, all other channels are set to zero at the corresponding position |
 | R | A or G | Translated to 1 at position of R for the channels A and G, all other channels are set to zero at the corresponding position |
 | W | A or T | Translated to 1 at position of W for the channels A and T, all other channels are set to zero at the corresponding position |
