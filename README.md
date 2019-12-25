@@ -7,8 +7,7 @@ To generate training data for your neural network based on latest data in Retrov
 1. Download latest compiled [release](https://github.com/senadmd/RetrovirusIntegrationDatabaseParser/releases "latest release") for this project, or fork and compile it yourself using Visual Studio.
 2. Download current retroviral HIV data from RID using *curl*, replace `PLACEHOLDER` with number of items you want to fetch in the command example below:  
 ``
-curl --request GET -o result.html "https://rid.ncifcrf.gov/result.php?file=tmp/1993657596.txt&page=0&limit=PLACEHOLDER&file_
-txt=tmp/1993657596.dwnld.txt"
+curl -d "virusnm=HIV1&subtypenm%5B%5D=all&host=hg19&chr%5B%5D=all&site_info%5B%5D=all&multiHits=0&submit=Submit+Query" -H "Content-Type: application/x-www-form-urlencoded" --request POST -o result.html "https://rid.ncifcrf.gov/result.php?limit=PLACEHOLDER"
 ``
   This will produce a file *result.html* that can be used in the next step to generate the retroviral insert positions file.
 3. Start the executable, select option 1 to parse insert positions contained in *result.html* and generate a file containing the positions (*positions.txt*).
